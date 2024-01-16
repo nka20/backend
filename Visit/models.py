@@ -1,7 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import User
+from rest_framework.authtoken.models import Token
 # from multiupload.fields import MultiImageField
 # Create your models here.
+
+class User(User):
+    is_authorized = models.BooleanField(default=False)
+
+
 class Photo_hotel(models.Model):
     #amafoto ya ma hotels azoja muri photos_hotels ,aho ha upload to, aho naho ha related_name hazojamwo ibindi
     image = models.ImageField(upload_to='photos_hotels')
@@ -32,13 +38,11 @@ class Photo_hotel(models.Model):
 class hotels(models.Model):
     name = models.CharField(max_length=100, blank=True)
     address = models.CharField(max_length=200, blank=True)
-    room_types = models.CharField(max_length=200, blank=True)
     description = models.TextField(default="", blank=True)
     #service = models.ManyToManyField(service)
     # photo = models.ManyToManyField()
     video = models.FileField(upload_to='hotels_videos/', default='default.mp4',blank=True ,null=False)
     #reservation = models.ForeignKey("reservation" ,null=False, on_delete=models.CASCADE)
-    prix = models.CharField(max_length=200, blank=True)
     contact = models.CharField(max_length=100,blank=True)
     stars = models.PositiveIntegerField(default=1, blank=True)
     #visit_count = models.PositiveIntegerField(default=0)
@@ -174,7 +178,7 @@ class restaurant_bars(models.Model):
     video = models.FileField(upload_to='restaurant_bars_videos/', default='default.mp4')
     #service = models.ForeignKey(service, on_delete=models.CASCADE)
     #reservation = models.ForeignKey("reservation", on_delete=models.CASCADE)
-    stars = models.PositiveIntegerField(default=1, blank=True)
+     
     url_site = models.URLField(blank=True)
     mail = models.EmailField()  
     longitude = models.FloatField(null=True, blank=True)
@@ -185,7 +189,7 @@ class restaurant_bars(models.Model):
         return self.name
     
 ############################################################
-class Photo_food(models.Model):  
+class Photo_food(models.Model):
     image = models.ImageField(upload_to='photos_food')
     food = models.ForeignKey('food', related_name='photo_food', on_delete=models.CASCADE)       
 
@@ -193,10 +197,8 @@ class food(models.Model):
     name = models.CharField(max_length=100, blank=True)
     description = models.TextField(default="", blank=True)
     address = models.CharField(max_length=100, blank=True)
-    prix = models.DecimalField(max_digits=9, decimal_places=2, blank=True)
     #stars = models.PositiveIntegerField(default=1)
     # photos = models.ManyToManyField(Photo, related_name='visit_food')
-    video = models.FileField(upload_to='food_videos/', default='default.mp4')
     contact = models.CharField(max_length=100,blank=True)
     url_site = models.URLField(blank=True)
 
@@ -210,7 +212,6 @@ class Photo_nightclubs(models.Model):
 class nightclubs(models.Model):
     name = models.CharField(max_length=50, blank=True)
     address = models.CharField(max_length=100, blank=True)
-    stars = models.PositiveIntegerField( blank=True)
     description = models.TextField(default="", blank=True)
     # photos = models.ManyToManyField(Photo, related_name='visit_bar')
     video = models.FileField(upload_to='nightclubs_videos/', default='default.mp4')
@@ -246,7 +247,7 @@ class sitestouristiques(models.Model):
     url_site = models.URLField(blank=True)
     contact = models.CharField(max_length=100,blank=True)
     mail = models.EmailField(max_length=254)
-    stars = models.PositiveIntegerField(default=1, blank=True)
+     
     longitude = models.FloatField(null=True, blank=True)
     latitude = models.FloatField(null=True, blank=True)
     #guide = models.ForeignKey(Guide,null=False, on_delete=models.CASCADE)
@@ -266,7 +267,7 @@ class event(models.Model):
     video = models.FileField(upload_to='event_videos/', default='default.mp4', blank=True)
     open_time = models.DateTimeField(max_length=200, blank=True)
     close_time = models.DateTimeField(max_length=200, blank=True)
-    stars = models.PositiveIntegerField(default=1, blank=True)
+     
     url_site = models.URLField(blank=True)
     contact = models.CharField(max_length=100,blank=True)
     is_national = models.BooleanField(default=True, blank=True)
@@ -290,7 +291,7 @@ class lieux_de_loisirs(models.Model):
     open_time = models.DateTimeField( blank=True)
     close_time = models.DateTimeField( blank=True)
     contact = models.CharField(max_length=100,blank=True)
-    stars = models.PositiveIntegerField(default=1, blank=True)
+     
     url_site = models.URLField(blank=True)
     mail = models.EmailField(max_length=254)
     longitude = models.FloatField(null=True, blank=True)
@@ -315,7 +316,7 @@ class province(models.Model):
     contact_guide = models.PositiveIntegerField()
     url_site = models.URLField(blank=True)
     mail = models.EmailField(max_length=254)
-    stars = models.PositiveIntegerField(default=1, blank=True)
+     
     longitude = models.FloatField(null=True, blank=True)
     latitude = models.FloatField(null=True, blank=True) 
     guide = models.ForeignKey(Guide,null=True, on_delete=models.CASCADE)
@@ -334,7 +335,7 @@ class quartiers(models.Model):
     # photos = models.ManyToManyField(Photo, related_name='visit_quartiers')
     guide = models.ForeignKey(Guide,null=True, on_delete=models.CASCADE)
     contact_guide = models.PositiveIntegerField( blank=True)
-    stars = models.PositiveIntegerField(default=1, blank=True)
+     
     contact = models.CharField(max_length=100,blank=True)
     longitude = models.FloatField(null=True, blank=True)
     latitude = models.FloatField(null=True, blank=True)  
@@ -352,7 +353,7 @@ class churches(models.Model):
     address = models.CharField(max_length=300, blank=True)
     ville = models.CharField(max_length=300, blank=True)
     # photos = models.ManyToManyField(Photo, related_name='visit_churches')
-    stars = models.PositiveIntegerField(default=1, blank=True)
+     
     video = models.FileField(upload_to='churches_videos/', default='default.mp4', blank=True)
     contact = models.CharField(max_length=100,blank=True)
     mail = models.EmailField(max_length=254)
@@ -373,7 +374,7 @@ class market(models.Model):
     # photos = models.ManyToManyField(Photo, related_name='visit_market')
     contact = models.CharField(max_length=100,blank=True)
     mail = models.EmailField(max_length=254)
-    stars = models.PositiveIntegerField(default=1, blank=True)
+     
     longitude = models.FloatField(null=True, blank=True)
     latitude = models.FloatField(null=True, blank=True)  
 
@@ -393,7 +394,7 @@ class hospitals(models.Model):
     video = models.FileField(upload_to='hopital_videos/', default='default.mp4', blank=True)
     contact = models.CharField(max_length=100,blank=True)
     mail = models.EmailField(max_length=254) 
-    stars = models.PositiveIntegerField(default=1, blank=True)
+     
     longitude = models.FloatField(null=True, blank=True)
     latitude = models.FloatField(null=True, blank=True) 
 
@@ -409,11 +410,10 @@ class transport(models.Model):
     address = models.CharField(max_length=100)
     #description izokenerwa kubashaka kuri location
     description = models.CharField(max_length=200, blank=True)
-    stars = models.PositiveIntegerField(default=1)
+      
     # photos = models.ManyToManyField(Photo, related_name='visit_transport')
     #video = models.FileField(upload_to='transport_videos/', default='default.mp4')
     contact = models.CharField(max_length=100,blank=True)
-    prix =  models.DecimalField(max_digits=9, decimal_places=2)
 
     def __str__(self):
         return self.name 
@@ -455,7 +455,6 @@ class conference(models.Model):
     contact = models.CharField(max_length=100,blank=True)
     date_fin = models.DateTimeField( blank=True,null=True)
     description = models.TextField(default="", blank=True)
-    stars = models.PositiveIntegerField(default=1, blank=True)
     # photos = models.ManyToManyField(Photo, related_name='visit_conference')
     video = models.FileField(upload_to='conference_videos/', default='default.mp4')
     url_site = models.URLField(blank=True)
@@ -483,7 +482,7 @@ class culture(models.Model):
     address = models.CharField(max_length=300, blank=True)
     description = models.TextField(default="", blank=True)
     # photos = models.ManyToManyField(Photo, related_name='visit_culture' )
-    stars = models.PositiveIntegerField(default=1, blank=True)
+     
     video = models.FileField(upload_to='culture_videos/', default='default.mp4', blank=True)
     date_creation = models.DateField( blank=True)
     contact = models.CharField(max_length=100,blank=True)
@@ -501,8 +500,10 @@ class art(models.Model):
     description = models.TextField(default="", blank=True)
     auteur = models.CharField(max_length=100, blank=True)
     contact = models.CharField(max_length=100,blank=True)
-    stars = models.PositiveIntegerField(default=1, blank=True)
+     
     mail = models.EmailField()
+    longitude = models.CharField(max_length=50, blank=True) 
+    latitude = models.CharField(max_length=50, blank=True)
  
     def __str__(self):
         return self.name

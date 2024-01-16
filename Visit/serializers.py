@@ -5,6 +5,10 @@ from .models import *
 from django.contrib.auth.models import User
 ####
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework_simplejwt.tokens import RefreshToken
+from .models import User
+from rest_framework import generics, status
+from rest_framework.generics import get_object_or_404
 from .models import PageView
 
 class TokenPairSerializer(TokenObtainPairSerializer):
@@ -15,38 +19,60 @@ class TokenPairSerializer(TokenObtainPairSerializer):
         data['username'] = self.user.username
         data['id'] = self.user.id
         data['is_superuser'] = self.user.is_superuser
+        data['is_active'] = self.user.is_active
+        data['is_authorized'] = getattr(self.user, 'is_authorized', True)
 
         return data
-        # add a user
+
 class UserSerializer(serializers.ModelSerializer):
+    is_active = serializers.BooleanField()
+
     class Meta:
-             model = User
-             fields = ['id', 'username', 'password']
+        model = User
+        fields = ['id', 'username', 'password', 'is_active']
 
     def get_token(self, obj):
-        # Utilisez le module TokenObtainPairSerializer pour générer un token
+        # Utilize the TokenObtainPairSerializer module to generate a token
         refresh = TokenObtainPairSerializer.get_token(obj)
         data = {
             'refresh': str(refresh),
             'access': str(refresh.access_token),
         }
         return data
+
     def create(self, validated_data):
-        # Créez l'utilisateur avec le mot de passe sécurisé
+        # Extract is_authorized from validated_data
+        is_authorized = validated_data.pop('is_authorized', False)
+
+        # Create the user with the remaining data
         user = User.objects.create_user(**validated_data)
-        
-        # Générez le token
+
+        # Set is_authorized for the created user
+        user.is_authorized = is_authorized
+        user.save()
+
+        # Generate the token
         token_serializer = TokenObtainPairSerializer()
         token_data = token_serializer.validate({'username': validated_data['username'], 'password': validated_data['password']})
-        
-        # Ajoutez le token aux données de l'utilisateur
+
+        # Add the token to the user data
         user.token = token_data['access']
-        
+
+        # Include is_authorized in the serialized output
         return user
-        # 
+
+    def update(self, instance, validated_data):
+        instance.username = validated_data.get('username', instance.username)
+        instance.is_active = validated_data.get('is_active', instance.is_active)
+        # You can add more fields to update as needed
+
+        # Save the changes to the user instance
+        instance.save()
+        return instance
+
+        #
 # change password
 class ChangePasswordSerializer(serializers.Serializer):
-    Username = serializers.CharField(max_length=128, write_only=True, required=True)
     old_password = serializers.CharField(max_length=128, write_only=True, required=True)
     new_password1 = serializers.CharField(max_length=128, write_only=True, required=True)
     new_password2 = serializers.CharField(max_length=128, write_only=True, required=True)
@@ -64,11 +90,35 @@ class ChangePasswordSerializer(serializers.Serializer):
 
         # Mettre à jour le mot de passe avec le nouveau
         user.set_password(validated_data['new_password1'])
-        user.username = validated_data['Username']
         user.save()
 
         return user
         # ################
+
+
+  # change username
+
+class ChangeUsernameSerializer(serializers.Serializer):
+    Username = serializers.CharField(max_length=128, write_only=True, required=True)
+    old_password = serializers.CharField(max_length=128, write_only=True, required=True)
+
+    def validate_old_password(self, value):
+        user = self.context['request'].user
+        if not user.check_password(value):
+            raise serializers.ValidationError(
+                ('Your old password was entered incorrectly or your username is already used. Please enter it again.')
+            )
+        return value  
+
+    def create(self, validated_data):
+        user = self.context['request'].user
+
+        # Mettre à jour le username avec le nouveau
+        user.username = validated_data['Username']
+        user.save()
+
+        return user
+        ##############      
 class Photo_hotelsSerializer(serializers.ModelSerializer):
     class Meta:
         model = Photo_hotel
