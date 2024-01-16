@@ -105,7 +105,7 @@ class Services_of_restaurants_bars(models.Model):
 class Guide(models.Model):
      name = models.CharField(max_length=100, blank=True)
     #  contact = models.CharField(max_length=100,blank=True)
-      
+     stars = models.PositiveIntegerField(default=1, blank=True)
      description = models.TextField(default="", blank=True)
      mail = models.EmailField()
     # hotel = models.ForeignKey(hotels, null=False,default=0, on_delete=models.CASCADE)
@@ -212,7 +212,6 @@ class Photo_nightclubs(models.Model):
 class nightclubs(models.Model):
     name = models.CharField(max_length=50, blank=True)
     address = models.CharField(max_length=100, blank=True)
-    stars = models.PositiveIntegerField( blank=True)
     description = models.TextField(default="", blank=True)
     # photos = models.ManyToManyField(Photo, related_name='visit_bar')
     video = models.FileField(upload_to='nightclubs_videos/', default='default.mp4')
@@ -456,7 +455,6 @@ class conference(models.Model):
     contact = models.CharField(max_length=100,blank=True)
     date_fin = models.DateTimeField( blank=True,null=True)
     description = models.TextField(default="", blank=True)
-    stars = models.PositiveIntegerField(default=1, blank=True)
     # photos = models.ManyToManyField(Photo, related_name='visit_conference')
     video = models.FileField(upload_to='conference_videos/', default='default.mp4')
     url_site = models.URLField(blank=True)
