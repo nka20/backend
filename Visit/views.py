@@ -447,7 +447,7 @@ class foodViewset(viewsets.ModelViewSet):
     authentication_classes= JWTAuthentication, SessionAuthentication
     serializer_class = foodSerializer
     filter_backends = [DjangoFilterBackend, filters.SearchFilter]
-    filterset_fields = ['prix']
+    # filterset_fields = ['prix']
     search_fields = ['name']
 
     def get_queryset(self):
