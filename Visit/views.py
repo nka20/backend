@@ -9,6 +9,14 @@ from django.contrib.auth.models import User
 from rest_framework.generics import CreateAPIView
 from rest_framework.permissions import AllowAny
 from .serializers import UserSerializer
+### suspend an user
+from django.contrib.auth import get_user_model
+from rest_framework import generics, status
+from rest_framework.response import Response
+# change username
+from .serializers import ChangeUsernameSerializer
+######
+
 #########
 # change password
 from rest_framework.response import Response
@@ -18,10 +26,11 @@ from .serializers import ChangePasswordSerializer
 from rest_framework.views import APIView
 from rest_framework.authtoken.models import Token
 from rest_framework.generics import UpdateAPIView
-from .serializers import ChangePasswordSerializer
+from rest_framework.response import Response
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.views import View
+from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.forms import PasswordChangeForm
 from django.contrib.auth import update_session_auth_hash
 from django.shortcuts import render, redirect
@@ -50,6 +59,28 @@ def get_user_agent(request):
     user_agent = request.META['HTTP_USER_AGENT']
     return user_agent
 
+ #### suspend an user
+class LoginView(APIView):
+    def post(self, request):
+        # Votre logique de gestion de connexion ici
+        username = request.data.get('username')
+        password = request.data.get('password')
+
+        user = get_user_model().objects.get(username=username)
+
+        if user.check_password(password):
+            # Vérifiez si l'utilisateur est suspendu
+            is_suspended = user.is_user_suspended()
+
+            if is_suspended:
+                return Response({"error": "Votre compte est suspendu"}, status=status.HTTP_400_BAD_REQUEST)
+
+            # Autres vérifications et génération du token JWT, etc.
+            # ...
+
+            return Response({"token": "votre_token", "expiresAt": "date_exp"}, status=status.HTTP_200_OK)
+        else:
+            return Response({"error": "Nom d'utilisateur ou mot de passe incorrect"}, status=status.HTTP_400_BAD_REQUEST)
 # create user 
 class UserRegistrationView(CreateAPIView):
     serializer_class = UserSerializer
@@ -69,6 +100,7 @@ class MyPutView(View):
         return HttpResponse("PUT request processed successfully")
 
 # @login_required
+
 def change_password(request):
     if request.method == 'POST':
         form = PasswordChangeForm(data=request.POST, user=request.user)
@@ -94,8 +126,26 @@ class ChangePasswordView(UpdateAPIView):
         user = serializer.save()
 
         # Supprimer le jeton d'authentification existant, s'il existe
-        if hasattr(user, 'auth_token'):
-            user.auth_token.delete()
+        if hasattr(user, 'user_token'):
+            user.user_token.delete()
+
+        # Créer un nouveau jeton d'authentification
+        token, created = Token.objects.get_or_create(user=user)
+
+        # Retourner le nouveau jeton
+        return Response({'token': token.key}, status=status.HTTP_200_OK)
+
+class ChangeUsernameView(UpdateAPIView):
+    serializer_class = ChangeUsernameSerializer
+
+    def update(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        user = serializer.save()
+
+        # Supprimer le jeton d'authentification existant, s'il existe
+        if hasattr(user, 'user_token'):
+            user.user_token.delete()
 
         # Créer un nouveau jeton d'authentification
         token, created = Token.objects.get_or_create(user=user)
@@ -114,6 +164,26 @@ class ListAllTokensView(APIView):
         # Retourner les données sous forme de réponse JSON
         return Response({'tokens': token_data}, status=status.HTTP_200_OK)
 # ###########################################################
+
+### pour voir la liste des utilisateurs
+class UserListAPIView(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+class UserDetailView(generics.RetrieveUpdateAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+    permission_classes = [IsAuthenticated]
+
+class UserDeleteAPIView(generics.DestroyAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
+
+    def destroy(self, request, *args, **kwargs):
+        instance = self.get_object()
+        self.perform_destroy(instance)
+        return Response(status=status.HTTP_204_NO_CONTENT)
+
 class Photo_hotelsViewSet(viewsets.ModelViewSet):
     queryset = Photo_hotel.objects.all()
     serializer_class = Photo_hotelsSerializer

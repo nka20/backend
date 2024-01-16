@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Visit',
     'rest_framework',
+    'rest_framework.authtoken',
     'corsheaders',
     'django_filters',
 

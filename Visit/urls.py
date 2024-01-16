@@ -17,7 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path,include
 from rest_framework import routers
+from .views import UserListAPIView
+from .views import UserDeleteAPIView
 from .views import *
+# suspend an user 
+
+from .views import UserDetailView
+
 # password change
 from django.contrib import admin
 from django.urls import path
@@ -97,12 +103,18 @@ router.register("view_culture", view_cultureViewSet)
 
 
 urlpatterns = [
-    path('api/register/', UserRegistrationView.as_view(), name='user-registration'),
+    path('register/', UserRegistrationView.as_view(), name='user-registration'),
+    path('user/', UserListAPIView.as_view(), name='user'),
+    path('user-suspend/<int:pk>/', UserDetailView.as_view(), name='user-detail'),
+
+    #   path('change-authorization/<int:pk>/', ChangeAuthorizationView.as_view(), name='change-authorization'),
+    path('user/<int:pk>/', UserDeleteAPIView.as_view(), name='user-delete'),
     # ... other paths ...
     path('', include(router.urls)),
     # change password
     path('my-view/', my_view, name='my_view'),
     #  path('admin/', admin.site.urls),
+     path('change-username/', ChangeUsernameView.as_view(), name='change_username'),
     # path('Visit/', include('visit.urls')),  # Remplacez "myapp" par le nom de votre application
     path('change-password/', ChangePasswordView.as_view(), name='change_password'),
     path('your/endpoint/', MyPutView.as_view(), name='my_put_view'),
