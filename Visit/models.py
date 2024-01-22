@@ -313,7 +313,7 @@ class province(models.Model):
     # contact_guide = models.PositiveIntegerField()
     # taxi = models.CharField(max_length=200)
     # contact_taxi = models.PositiveIntegerField()
-    contact = models.PositiveIntegerField()
+    contact = models.CharField(max_length=100,blank=True)
     url_site = models.URLField(blank=True)
     mail = models.EmailField(max_length=254)
      
