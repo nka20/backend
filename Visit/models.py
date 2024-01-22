@@ -313,7 +313,7 @@ class province(models.Model):
     # contact_guide = models.PositiveIntegerField()
     # taxi = models.CharField(max_length=200)
     # contact_taxi = models.PositiveIntegerField()
-    contact_guide = models.PositiveIntegerField()
+    contact = models.PositiveIntegerField()
     url_site = models.URLField(blank=True)
     mail = models.EmailField(max_length=254)
      
@@ -334,7 +334,7 @@ class quartiers(models.Model):
     description = models.TextField(default="", blank=True)
     # photos = models.ManyToManyField(Photo, related_name='visit_quartiers')
     guide = models.ForeignKey(Guide,null=True, on_delete=models.CASCADE)
-    contact_guide = models.PositiveIntegerField( blank=True)
+    # contact_guide = models.PositiveIntegerField( blank=True)
      
     contact = models.CharField(max_length=100,blank=True)
     longitude = models.FloatField(null=True, blank=True)
