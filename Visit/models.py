@@ -435,6 +435,7 @@ class PageView(models.Model):
 ##################################pages les plus vues#############################################
 class view_guide(models.Model):
     page = models.CharField(max_length=100, blank=True)
+    description = models.CharField(max_length=400, blank=True)
     count = models.IntegerField(default=0, blank=True)
     image = models.ImageField()
     identification = models.IntegerField(default=0, blank=True)
@@ -446,6 +447,7 @@ class view_guide(models.Model):
     
 class view_art(models.Model):
     page = models.CharField(max_length=100, blank=True)
+    description = models.CharField(max_length=400, blank=True)
     count = models.IntegerField(default=0, blank=True)
     image = models.ImageField()
     identification = models.IntegerField(default=0, blank=True)
@@ -457,6 +459,7 @@ class view_art(models.Model):
     
 class view_hotel(models.Model):
     page = models.CharField(max_length=100, blank=True)
+    description = models.CharField(max_length=400, blank=True)
     count = models.IntegerField(default=0, blank=True)
     image = models.ImageField()
     identification = models.IntegerField(default=0, blank=True)
@@ -467,6 +470,7 @@ class view_hotel(models.Model):
         return self.page
 class view_transport(models.Model):
     page = models.CharField(max_length=100, blank=True)
+    description = models.CharField(max_length=400, blank=True)
     count = models.IntegerField(default=0, blank=True)
     image = models.ImageField()
     identification = models.IntegerField(default=0, blank=True)
@@ -477,6 +481,7 @@ class view_transport(models.Model):
         return self.page
 class view_conference(models.Model):
     page = models.CharField(max_length=100, blank=True)
+    description = models.CharField(max_length=400, blank=True)
     count = models.IntegerField(default=0, blank=True)
     image = models.ImageField()
     identification = models.IntegerField(default=0, blank=True)
@@ -487,6 +492,7 @@ class view_conference(models.Model):
         return self.page
 class view_restaurant_bars(models.Model):    
     page = models.CharField(max_length=100, blank=True)
+    description = models.CharField(max_length=400, blank=True)
     count = models.IntegerField(default=0, blank=True)
     image = models.ImageField()
     identification = models.IntegerField(default=0, blank=True)
@@ -498,6 +504,7 @@ class view_restaurant_bars(models.Model):
     
 class view_food(models.Model):
     page = models.CharField(max_length=100, blank=True)
+    description = models.CharField(max_length=400, blank=True)
     count = models.IntegerField(default=0, blank=True)
     image = models.ImageField()
     identification = models.IntegerField(default=0, blank=True)
@@ -509,6 +516,7 @@ class view_food(models.Model):
     
 class view_conference(models.Model):   
     page = models.CharField(max_length=100, blank=True)
+    description = models.CharField(max_length=400, blank=True)
     count = models.IntegerField(default=0, blank=True)
     image = models.ImageField()
     identification = models.IntegerField(default=0, blank=True)
@@ -520,6 +528,7 @@ class view_conference(models.Model):
     
 class view_event(models.Model):
     page = models.CharField(max_length=100, blank=True)
+    description = models.CharField(max_length=400, blank=True)
     count = models.IntegerField(default=0, blank=True)
     image = models.ImageField()
     identification = models.IntegerField(default=0, blank=True)
@@ -531,6 +540,7 @@ class view_event(models.Model):
   
 class view_churches(models.Model):
     page = models.CharField(max_length=100, blank=True)
+    description = models.CharField(max_length=400, blank=True)
     count = models.IntegerField(default=0, blank=True)
     image = models.ImageField()
     identification = models.IntegerField(default=0, blank=True)
@@ -541,6 +551,7 @@ class view_churches(models.Model):
         return self.page
 class view_sitestouristiques(models.Model):
     page = models.CharField(max_length=100, blank=True)
+    description = models.CharField(max_length=400, blank=True)
     count = models.IntegerField(default=0, blank=True)
     image = models.ImageField()
     identification = models.IntegerField(default=0, blank=True)
@@ -552,6 +563,7 @@ class view_sitestouristiques(models.Model):
     
 class view_market(models.Model):
     page = models.CharField(max_length=100, blank=True)
+    description = models.CharField(max_length=400, blank=True)
     count = models.IntegerField(default=0, blank=True)
     image = models.ImageField()
     identification = models.IntegerField(default=0, blank=True)
@@ -563,6 +575,7 @@ class view_market(models.Model):
     
 class view_lieux_de_loisirs(models.Model):
     page = models.CharField(max_length=100, blank=True)
+    description = models.CharField(max_length=400, blank=True)
     count = models.IntegerField(default=0, blank=True)
     image = models.ImageField()
     identification = models.IntegerField(default=0, blank=True)
@@ -573,6 +586,7 @@ class view_lieux_de_loisirs(models.Model):
         return self.page
 class view_province(models.Model):
     page = models.CharField(max_length=100, blank=True)
+    description = models.CharField(max_length=400, blank=True)
     count = models.IntegerField(default=0, blank=True)
     image = models.ImageField()
     identification = models.IntegerField(default=0, blank=True)
@@ -583,6 +597,7 @@ class view_province(models.Model):
         return self.page
 class view_quartiers(models.Model):
     page = models.CharField(max_length=100, blank=True)
+    description = models.CharField(max_length=400, blank=True)
     count = models.IntegerField(default=0, blank=True)
     image = models.ImageField()
     identification = models.IntegerField(default=0, blank=True)
@@ -593,6 +608,7 @@ class view_quartiers(models.Model):
         return self.page
 class view_hospital(models.Model):
     page = models.CharField(max_length=100, blank=True)
+    description = models.CharField(max_length=400, blank=True)
     count = models.IntegerField(default=0, blank=True)
     image = models.ImageField()
     identification = models.IntegerField(default=0, blank=True)
@@ -603,6 +619,7 @@ class view_hospital(models.Model):
         return self.page
 class view_nightclubs(models.Model):
     page = models.CharField(max_length=100, blank=True)
+    description = models.CharField(max_length=400, blank=True)
     count = models.IntegerField(default=0, blank=True)
     image = models.ImageField()
     identification = models.IntegerField(default=0, blank=True)
@@ -613,6 +630,7 @@ class view_nightclubs(models.Model):
         return self.page
 class view_culture(models.Model):
     page = models.CharField(max_length=100, blank=True)
+    description = models.CharField(max_length=400, blank=True)
     count = models.IntegerField(default=0, blank=True)
     image = models.ImageField()
     identification = models.IntegerField(default=0, blank=True)

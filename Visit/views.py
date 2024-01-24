@@ -1067,10 +1067,12 @@ class view_guideViewset(viewsets.ModelViewSet):
             view_guide_instance.page = data['page']
             view_guide_instance.image = data['image']
             view_guide_instance.identification = data['identification']
+            view_guide_instance.description = data['description']
             view_guide_instance.count = data['count']
         else:
             view_guide_instance.page = data['page']
             view_guide_instance.identification = data['identification']
+            view_guide_instance.description = data['description']
             view_guide_instance.image = data['image']
             view_guide_instance.count += data['count']
 
@@ -1099,10 +1101,12 @@ class view_artViewset(viewsets.ModelViewSet):
             view_art_instance.page = data['page']
             view_art_instance.image = data['image']
             view_art_instance.identification = data['identification']
+            view_art_instance.description = data['description']
             view_art_instance.count = data['count']
         else:
             view_art_instance.page = data['page']
             view_art_instance.identification = data['identification']
+            view_art_instance.description = data['description']
             view_art_instance.image = data['image']
             view_art_instance.count += data['count']
 
@@ -1129,10 +1133,12 @@ class view_hotelViewset(viewsets.ModelViewSet):
             view_hotel_instance.page = data['page']
             view_hotel_instance.image = data['image']
             view_hotel_instance.identification = data['identification']
+            view_hotel_instance.description = data['description']
             view_hotel_instance.count = data['count']
         else:
             view_hotel_instance.page = data['page']
             view_hotel_instance.identification = data['identification']
+            view_hotel_instance.description = data['description']
             view_hotel_instance.image = data['image']
             view_hotel_instance.count += data['count']
 
@@ -1159,10 +1165,12 @@ class view_transportViewset(viewsets.ModelViewSet):
             view_transport_instance.page = data['page']
             view_transport_instance.image = data['image']
             view_transport_instance.identification = data['identification']
+            view_transport_instance.description = data['description']
             view_transport_instance.count = data['count']
         else:
             view_transport_instance.page = data['page']
             view_transport_instance.identification = data['identification']
+            view_transport_instance.description = data['description']
             view_transport_instance.image = data['image']
             view_transport_instance.count += data['count']
 
@@ -1188,10 +1196,12 @@ class view_conferenceViewset(viewsets.ModelViewSet):
             view_conference_instance.page = data['page']
             view_conference_instance.image = data['image']
             view_conference_instance.identification = data['identification']
+            view_conference_instance.description = data['description']
             view_conference_instance.count = data['count']
         else:
             view_conference_instance.page = data['page']
             view_conference_instance.identification = data['identification']
+            view_conference_instance.description = data['description']
             view_conference_instance.image = data['image']
             view_conference_instance.count += data['count']
 
@@ -1217,10 +1227,12 @@ class views_restaurant_barsViewSet(viewsets.ModelViewSet):
             view_restaurant_bars_instance.page = data['page']
             view_restaurant_bars_instance.image = data['image']
             view_restaurant_bars_instance.identification = data['identification']
+            view_restaurant_bars_instance.description = data['description']
             view_restaurant_bars_instance.count = data['count']
         else:
             view_restaurant_bars_instance.page = data['page']
             view_restaurant_bars_instance.identification = data['identification']
+            view_restaurant_bars_instance.description = data['description']
             view_restaurant_bars_instance.image = data['image']
             view_restaurant_bars_instance.count += data['count']
 
@@ -1249,10 +1261,12 @@ class view_foodViewSet(viewsets.ModelViewSet):
             view_food_instance.page = data['page']
             view_food_instance.image = data['image']
             view_food_instance.identification = data['identification']
+            view_food_instance.description = data['description']
             view_food_instance.count = data['count']
         else:
             view_food_instance.page = data['page']
             view_food_instance.identification = data['identification']
+            view_food_instance.description = data['description']
             view_food_instance.image = data['image']
             view_food_instance.count += data['count']
 
@@ -1280,10 +1294,12 @@ class view_conferenceViewSet(viewsets.ModelViewSet):
             view_conference_instance.page = data['page']
             view_conference_instance.image = data['image']
             view_conference_instance.identification = data['identification']
+            view_conference_instance.description = data['description']
             view_conference_instance.count = data['count']
         else:
             view_conference_instance.page = data['page']
             view_conference_instance.identification = data['identification']
+            view_conference_instance.description = data['description']
             view_conference_instance.image = data['image']
             view_conference_instance.count += data['count']
 
@@ -1314,10 +1330,12 @@ class view_eventViewSet(viewsets.ModelViewSet):
             view_event_instance.page = data['page']
             view_event_instance.image = data['image']
             view_event_instance.identification = data['identification']
+            view_event_instance.description = data['description']
             view_event_instance.count = data['count']
         else:
             view_event_instance.page = data['page']
             view_event_instance.identification = data['identification']
+            view_event_instance.description = data['description']
             view_event_instance.image = data['image']
             view_event_instance.count += data['count']
 
@@ -1345,10 +1363,12 @@ class view_churchesViewSet(viewsets.ModelViewSet):
             view_churches_instance.page = data['page']
             view_churches_instance.image = data['image']
             view_churches_instance.identification = data['identification']
+            view_churches_instance.description = data['description']
             view_churches_instance.count = data['count']
         else:
             view_churches_instance.page = data['page']
             view_churches_instance.identification = data['identification']
+            view_churches_instance.description = data['description']
             view_churches_instance.image = data['image']
             view_churches_instance.count += data['count']
 
@@ -1376,10 +1396,12 @@ class view_sitestouristiquesViewSet(viewsets.ModelViewSet):
             view_sitestouristiques_instance.page = data['page']
             view_sitestouristiques_instance.image = data['image']
             view_sitestouristiques_instance.identification = data['identification']
+            view_sitestouristiques_instance.description = data['description']
             view_sitestouristiques_instance.count = data['count']
         else:
             view_sitestouristiques_instance.page = data['page']
             view_sitestouristiques_instance.identification = data['identification']
+            view_sitestouristiques_instance.description = data['description']
             view_sitestouristiques_instance.image = data['image']
             view_sitestouristiques_instance.count += data['count']
 
@@ -1407,10 +1429,12 @@ class view_marketViewSet(viewsets.ModelViewSet):
             view_market_instance.page = data['page']
             view_market_instance.image = data['image']
             view_market_instance.identification = data['identification']
+            view_market_instance.description = data['description']
             view_market_instance.count = data['count']
         else:
             view_market_instance.page = data['page']
             view_market_instance.identification = data['identification']
+            view_market_instance.description = data['description']
             view_market_instance.image = data['image']
             view_market_instance.count += data['count']
 
@@ -1440,10 +1464,12 @@ class view_lieux_de_loisirsViewSet(viewsets.ModelViewSet):
             view_lieux_de_loisirs_instance.page = data['page']
             view_lieux_de_loisirs_instance.image = data['image']
             view_lieux_de_loisirs_instance.identification = data['identification']
+            view_lieux_de_loisirs_instance.description = data['description']
             view_lieux_de_loisirs_instance.count = data['count']
         else:
             view_lieux_de_loisirs_instance.page = data['page']
             view_lieux_de_loisirs_instance.identification = data['identification']
+            view_lieux_de_loisirs_instance.description = data['description']
             view_lieux_de_loisirs_instance.image = data['image']
             view_lieux_de_loisirs_instance.count += data['count']
 
@@ -1470,10 +1496,12 @@ class view_provinceViewSet(viewsets.ModelViewSet):
             view_province_instance.page = data['page']
             view_province_instance.image = data['image']
             view_province_instance.identification = data['identification']
+            view_province_instance.description = data['description']
             view_province_instance.count = data['count']
         else:
             view_province_instance.page = data['page']
             view_province_instance.identification = data['identification']
+            view_province_instance.description = data['description']
             view_province_instance.image = data['image']
             view_province_instance.count += data['count']
 
@@ -1499,10 +1527,12 @@ class view_quartiersViewSet(viewsets.ModelViewSet):
             view_quartiers_instance.page = data['page']
             view_quartiers_instance.image = data['image']
             view_quartiers_instance.identification = data['identification']
+            view_quartiers_instance.description = data['description']
             view_quartiers_instance.count = data['count']
         else:
             view_quartiers_instance.page = data['page']
             view_quartiers_instance.identification = data['identification']
+            view_quartiers_instance.description = data['description']
             view_quartiers_instance.image = data['image']
             view_quartiers_instance.count += data['count']
 
@@ -1528,10 +1558,12 @@ class view_hospitalViewSet(viewsets.ModelViewSet):
             view_hospital_instance.page = data['page']
             view_hospital_instance.image = data['image']
             view_hospital_instance.identification = data['identification']
+            view_hospital_instance.description = data['description']
             view_hospital_instance.count = data['count']
         else:
             view_hospital_instance.page = data['page']
             view_hospital_instance.identification = data['identification']
+            view_hospital_instance.description = data['description']
             view_hospital_instance.image = data['image']
             view_hospital_instance.count += data['count']
 
@@ -1557,10 +1589,12 @@ class view_nightclubsViewSet(viewsets.ModelViewSet):
             view_nightclubs_instance.page = data['page']
             view_nightclubs_instance.image = data['image']
             view_nightclubs_instance.identification = data['identification']
+            view_nightclubs_instance.description = data['description']
             view_nightclubs_instance.count = data['count']
         else:
             view_nightclubs_instance.page = data['page']
             view_nightclubs_instance.identification = data['identification']
+            view_nightclubs_instance.description = data['description']
             view_nightclubs_instance.image = data['image']
             view_nightclubs_instance.count += data['count']
 
@@ -1586,10 +1620,12 @@ class view_cultureViewSet(viewsets.ModelViewSet):
             view_culture_instance.page = data['page']
             view_culture_instance.image = data['image']
             view_culture_instance.identification = data['identification']
+            view_culture_instance.description = data['description']
             view_culture_instance.count = data['count']
         else:
             view_culture_instance.page = data['page']
             view_culture_instance.identification = data['identification']
+            view_culture_instance.description = data['description']
             view_culture_instance.image = data['image']
             view_culture_instance.count += data['count']
 
