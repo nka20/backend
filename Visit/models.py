@@ -465,6 +465,26 @@ class view_hotel(models.Model):
     #last_viewed = models.DateTimeField(auto_now=True)
     def __str__(self):
         return self.page
+class view_transport(models.Model):
+    page = models.CharField(max_length=100, blank=True)
+    count = models.IntegerField(default=0, blank=True)
+    image = models.ImageField()
+    identification = models.IntegerField(default=0, blank=True)
+    ordering = ['-count']
+    #view_count = models.IntegerField(default=0)
+    #last_viewed = models.DateTimeField(auto_now=True)
+    def __str__(self):
+        return self.page
+class view_conference(models.Model):
+    page = models.CharField(max_length=100, blank=True)
+    count = models.IntegerField(default=0, blank=True)
+    image = models.ImageField()
+    identification = models.IntegerField(default=0, blank=True)
+    ordering = ['-count']
+    #view_count = models.IntegerField(default=0)
+    #last_viewed = models.DateTimeField(auto_now=True)
+    def __str__(self):
+        return self.page
 class view_restaurant_bars(models.Model):    
     page = models.CharField(max_length=100, blank=True)
     count = models.IntegerField(default=0, blank=True)

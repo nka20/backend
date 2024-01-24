@@ -439,6 +439,15 @@ class view_hotelSerializer(serializers.ModelSerializer):
     class Meta:
         model = view_hotel
         fields = "__all__"
+class view_transportSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = view_transport
+        fields = "__all__"
+
+class view_conferenceSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = view_conference
+        fields = "__all__"
 
 class view_restaurant_barsSerializer(serializers.ModelSerializer):
     class Meta:
