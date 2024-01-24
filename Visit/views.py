@@ -254,66 +254,6 @@ class hotelsViewset(viewsets.ModelViewSet):
         ip = request.META['REMOTE_ADDR']
 
         return super().list(request, *args, **kwargs)
-
-##########################################################################
-class reservationViewset(viewsets.ModelViewSet):
-    queryset = reservation.objects.all()
-    permission_classes = IsAuthenticatedOrReadOnly,
-    authentication_classes= JWTAuthentication, SessionAuthentication
-    serializer_class = reservationSerializer
-    # filter_backends = [DjangoFilterBackend, filters.SearchFilter]
-    # filterset_fields = ['service']
-    # search_fields = ['service']
-
-class Reservations_of_servicesViewset(viewsets.ModelViewSet):
-    queryset = Reservations_of_services.objects.all()
-    permission_classes = IsAuthenticatedOrReadOnly,
-    authentication_classes= JWTAuthentication, SessionAuthentication
-    serializer_class = Reservations_of_servicesSerializer
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
-    filterset_fields = ['services_of_hotels']
-    search_fields = ['reservations']
-
-class Reservations_of_restaurantsViewset(viewsets.ModelViewSet):
-    queryset = Reservations_of_restaurants.objects.all()
-    permission_classes = IsAuthenticatedOrReadOnly,
-    authentication_classes= JWTAuthentication, SessionAuthentication
-    serializer_class = Reservations_of_restaurantsSerializer
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
-    filterset_fields = ['restaurants_bars']
-    search_fields = ['reservations']
-########################################################################
-class Photo_serviceViewSet(viewsets.ModelViewSet):
-    queryset = Photo_service.objects.all()
-    serializer_class = Photo_serviceSerializer
-
-class Service_of_hotelsViewset(viewsets.ModelViewSet):
-    queryset = Services_of_hotels.objects.all()
-    permission_classes = IsAuthenticatedOrReadOnly,
-    authentication_classes= JWTAuthentication, SessionAuthentication
-    serializer_class = Services_of_hotelsSerializer
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
-    filterset_fields = ['services']
-    search_fields = ['hotel']
-
-class Service_of_restaurantsViewset(viewsets.ModelViewSet):
-    queryset = Services_of_restaurants_bars.objects.all()
-    permission_classes = IsAuthenticatedOrReadOnly,
-    authentication_classes= JWTAuthentication, SessionAuthentication
-    serializer_class = Services_of_restaurantsSerializer
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
-    filterset_fields = ['restaurants_bars']
-    search_fields = ['services']
-
-class serviceViewset(viewsets.ModelViewSet):
-    queryset = service.objects.all()
-    permission_classes = IsAuthenticatedOrReadOnly,
-    authentication_classes= JWTAuthentication, SessionAuthentication
-    serializer_class = serviceSerializer
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
-    filterset_fields = ['name']
-    search_fields = ['name']
-
 #############################################################################
 class Photo_guideViewSet(viewsets.ModelViewSet):
     queryset = Photo_guide.objects.all()

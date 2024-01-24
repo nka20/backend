@@ -143,52 +143,7 @@ class hotelsSerializer(serializers.ModelSerializer):
         model = hotels
         fields = "__all__"
 ######################################################    
-class Photo_serviceSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Photo_service
-        fields = "__all__"
-        
-class serviceSerializer(serializers.ModelSerializer):
-    photo_service= serializers.SerializerMethodField()
-    def get_photo_service(self, service):
-        qs = Photo_service.objects.all().filter(service=service)
-        serializer = Photo_serviceSerializer(instance=qs , many = True)
-        return serializer.data
-    class Meta:
-        model = service
-        fields = "__all__"
 
-class Services_of_restaurantsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Services_of_restaurants_bars
-        fields = "__all__"
-
-class Services_of_hotelsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Services_of_hotels
-        fields = "__all__"
-
-#######################################################
-
-class reservationSerializer(serializers.ModelSerializer):
-    def to_representation(self, instance):
-         data = super().to_representation(instance)
-         data["service_name"] = instance.service.name
-         data["service_price"] = instance.service.price
-         return data
-    class Meta:
-        model = reservation
-        fields = "__all__"
-
-class Reservations_of_servicesSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Reservations_of_services
-        fields = "__all__"
-
-class Reservations_of_restaurantsSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Reservations_of_restaurants
-        fields = "__all__"
 #####################################################################        
 class Photo_restaurant_barsSerializer(serializers.ModelSerializer):
     class Meta:
