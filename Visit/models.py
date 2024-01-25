@@ -178,9 +178,9 @@ class sitestouristiques(models.Model):
     description = models.TextField(default="", blank=True)
     # photos = models.ManyToManyField(Photo, related_name='visit_sites_touristiques')
     video = models.FileField(upload_to='sitestouristiques_videos/', default='default.mp4')
-    open_time = models.DateTimeField( blank=True)
-    guide = models.ForeignKey(Guide,null=True, on_delete=models.CASCADE)
-    close_time = models.DateTimeField( blank=True)
+    open_time =  models.TimeField(blank=True, null=True)
+ 
+    close_time =  models.TimeField(blank=True, null=True)
     url_site = models.URLField(blank=True)
     mail = models.EmailField(max_length=254)
      
@@ -206,7 +206,6 @@ class event(models.Model):
      
     url_site = models.URLField(blank=True)
     is_national = models.BooleanField(default=True, blank=True)
-    mail = models.EmailField(max_length=254)
     longitude = models.FloatField(null=True, blank=True)
     latitude = models.FloatField(null=True, blank=True)  
 
@@ -223,8 +222,8 @@ class lieux_de_loisirs(models.Model):
     description = models.TextField(default="", blank=True)
     # photos = models.ManyToManyField(Photo, related_name='visit_lieux_de_loisirs')
     video = models.FileField(upload_to='lieux_de_loisirs_videos/', default='default.mp4', blank=True)
-    open_time = models.DateTimeField( blank=True)
-    close_time = models.DateTimeField( blank=True)     
+    open_time =  models.TimeField(blank=True, null=True)
+    close_time =  models.TimeField(blank=True, null=True)     
     url_site = models.URLField(blank=True)
     mail = models.EmailField(max_length=254)
     longitude = models.FloatField(null=True, blank=True)
@@ -245,7 +244,7 @@ class province(models.Model):
     url_site = models.URLField(blank=True)
     longitude = models.FloatField(null=True, blank=True)
     latitude = models.FloatField(null=True, blank=True) 
-    guide = models.ForeignKey(Guide,null=True, on_delete=models.CASCADE)
+ 
 
     def __str__(self):
         return self.name  
@@ -259,7 +258,7 @@ class quartiers(models.Model):
     address = models.CharField(max_length=100, blank=True)
     description = models.TextField(default="", blank=True)
     # photos = models.ManyToManyField(Photo, related_name='visit_quartiers')
-    guide = models.ForeignKey(Guide,null=True, on_delete=models.CASCADE)
+ 
     longitude = models.FloatField(null=True, blank=True)
     latitude = models.FloatField(null=True, blank=True)  
     
