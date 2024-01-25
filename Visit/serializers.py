@@ -444,11 +444,6 @@ class view_transportSerializer(serializers.ModelSerializer):
         model = view_transport
         fields = "__all__"
 
-class view_conferenceSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = view_conference
-        fields = "__all__"
-
 class view_restaurant_barsSerializer(serializers.ModelSerializer):
     class Meta:
         model = view_restaurant_bars

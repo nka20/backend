@@ -513,18 +513,6 @@ class view_food(models.Model):
     def __str__(self):
         return self.page
     
-class view_conference(models.Model):   
-    page = models.CharField(max_length=100, blank=True)
-    description = models.CharField(max_length=400, blank=True)
-    count = models.IntegerField(default=0, blank=True)
-    image = models.ImageField()
-    identification = models.IntegerField(default=0, blank=True)
-    ordering = ['-count']
-    #view_count = models.IntegerField(default=0)
-    #last_viewed = models.DateTimeField(auto_now=True)
-    def __str__(self):
-        return self.page
-    
 class view_event(models.Model):
     page = models.CharField(max_length=100, blank=True)
     description = models.CharField(max_length=400, blank=True)
