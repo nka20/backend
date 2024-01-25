@@ -178,9 +178,9 @@ class sitestouristiques(models.Model):
     description = models.TextField(default="", blank=True)
     # photos = models.ManyToManyField(Photo, related_name='visit_sites_touristiques')
     video = models.FileField(upload_to='sitestouristiques_videos/', default='default.mp4')
-    open_time =  models.TimeField(blank=True, null=True)
+    open_time =  models.TimeField(max_length=100, blank=True)
  
-    close_time =  models.TimeField(blank=True, null=True)
+    close_time =  models.TimeField(max_length=100, blank=True)
     url_site = models.URLField(blank=True)
     mail = models.EmailField(max_length=254)
      
@@ -222,8 +222,8 @@ class lieux_de_loisirs(models.Model):
     description = models.TextField(default="", blank=True)
     # photos = models.ManyToManyField(Photo, related_name='visit_lieux_de_loisirs')
     video = models.FileField(upload_to='lieux_de_loisirs_videos/', default='default.mp4', blank=True)
-    open_time =  models.TimeField(blank=True, null=True)
-    close_time =  models.TimeField(blank=True, null=True)     
+    open_time =  models.TimeField(max_length=100, blank=True)
+    close_time =  models.TimeField(max_length=100, blank=True)  
     url_site = models.URLField(blank=True)
     mail = models.EmailField(max_length=254)
     longitude = models.FloatField(null=True, blank=True)
