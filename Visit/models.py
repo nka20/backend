@@ -4,8 +4,6 @@ from rest_framework.authtoken.models import Token
 # from multiupload.fields import MultiImageField
 # Create your models here.
 
-# class User(User):
-#     is_authorized = models.BooleanField(default=False)
 
 
 class Photo_hotel(models.Model):
