@@ -1,11 +1,11 @@
 from django.db import models
-from django.contrib.auth.models import User
+# from django.contrib.auth.models import AbstractUser
 from rest_framework.authtoken.models import Token
 # from multiupload.fields import MultiImageField
 # Create your models here.
 
-class User(User):
-    is_authorized = models.BooleanField(default=False)
+# class User(User):
+#     is_authorized = models.BooleanField(default=False)
 
 
 class Photo_hotel(models.Model):
