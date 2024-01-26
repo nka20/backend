@@ -240,7 +240,7 @@ class sitestouristiquesSerializer(serializers.ModelSerializer):
 
     def to_representation(self,object):  
         representation=super().to_representation(object)
-        representation["guide"]=GuideSerializer(object.guide,many=False).data
+          # representation["guide"]=GuideSerializer(object.guide,many=False).data
         return representation
 
     class Meta:
@@ -288,7 +288,7 @@ class provinceSerializer(serializers.ModelSerializer):
 
     def to_representation(self,object):
         representation=super().to_representation(object)
-        representation["guide"]=GuideSerializer(object.guide,many=False).data
+          # representation["guide"]=GuideSerializer(object.guide,many=False).data
         return representation
     class Meta:
         model = province
@@ -307,7 +307,7 @@ class quartiersSerializer(serializers.ModelSerializer):
 
     def to_representation(self,object):
         representation=super().to_representation(object)
-        representation["guide"]=GuideSerializer(object.guide,many=False).data
+          # representation["guide"]=GuideSerializer(object.guide,many=False).data
         return representation
     class Meta:
         model = quartiers
@@ -442,11 +442,6 @@ class view_hotelSerializer(serializers.ModelSerializer):
 class view_transportSerializer(serializers.ModelSerializer):
     class Meta:
         model = view_transport
-        fields = "__all__"
-
-class view_conferenceSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = view_conference
         fields = "__all__"
 
 class view_restaurant_barsSerializer(serializers.ModelSerializer):

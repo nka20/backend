@@ -1176,37 +1176,6 @@ class view_transportViewset(viewsets.ModelViewSet):
 
         view_transport_instance.save()
         return Response(201)
-class view_conferenceViewset(viewsets.ModelViewSet):
-    # queryset = PageView.objects.all().order_by('-count')[:10]
-    queryset = view_conference.objects.all().order_by('-count')
-    # permission_classes = IsAuthenticatedOrReadOnly,
-    # authentication_classes= JWTAuthentication, SessionAuthentication
-    serializer_class = view_conferenceSerializer
-    filter_backends = [DjangoFilterBackend, filters.SearchFilter]
-    filterset_fields = ['identification']
-    search_fields = ['identification']
-
-    def create(self, request):
-        data = request.data
-
-        # Créer un nouvel objet PageView avec les autres champs
-        view_conference_instance, created = view_conference.objects.get_or_create(identification=data['identification'])
-
-        if created:
-            view_conference_instance.page = data['page']
-            view_conference_instance.image = data['image']
-            view_conference_instance.identification = data['identification']
-            view_conference_instance.description = data['description']
-            view_conference_instance.count = data['count']
-        else:
-            view_conference_instance.page = data['page']
-            view_conference_instance.identification = data['identification']
-            view_conference_instance.description = data['description']
-            view_conference_instance.image = data['image']
-            view_conference_instance.count += data['count']
-
-        view_conference_instance.save()
-        return Response(201)
 class views_restaurant_barsViewSet(viewsets.ModelViewSet):
     # queryset = PageView.objects.all().order_by('-count')[:10]
     queryset = view_restaurant_bars.objects.all().order_by('-count')
