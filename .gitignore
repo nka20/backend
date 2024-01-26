@@ -15,6 +15,7 @@ local_settings.py
 *.zip
 /tmp
 /db
+/venv
 
 *.xls
 *.xlsx
