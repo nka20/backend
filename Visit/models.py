@@ -180,7 +180,7 @@ class sitestouristiques(models.Model):
  
     close_time =  models.TimeField(max_length=100, blank=True)
     url_site = models.URLField(blank=True)
-    mail = models.EmailField(max_length=254)
+    mail = models.EmailField()
      
     longitude = models.FloatField(null=True, blank=True)
     latitude = models.FloatField(null=True, blank=True)
@@ -223,7 +223,7 @@ class lieux_de_loisirs(models.Model):
     open_time =  models.TimeField(max_length=100, blank=True)
     close_time =  models.TimeField(max_length=100, blank=True)  
     url_site = models.URLField(blank=True)
-    mail = models.EmailField(max_length=254)
+    mail = models.EmailField()
     longitude = models.FloatField(null=True, blank=True)
     latitude = models.FloatField(null=True, blank=True)  
 
