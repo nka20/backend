@@ -1,5 +1,0 @@
-QUand on fait un pull,on doit faire un py manage.py migrate --fake pour ne pas avoir les migrations de l'autre(de ton collaborateur) 
-
-#En exécutant python manage.py migrate --fake, vous demandez à Django de marquer toutes les migrations en attente comme appliquées sans réellement exécuter leurs opérations SQL. Cela peut être utile si vous avez ajouté ou modifié manuellement des tables ou des colonnes de base de données en dehors de la portée des migrations de Django.
-
-et puis,on va faire les make migrations et enfin migrate
