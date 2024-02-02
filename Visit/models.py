@@ -182,7 +182,7 @@ class sitestouristiques(models.Model):
     guide = models.ForeignKey(Guide,null=True, on_delete=models.CASCADE)
     close_time = models.DateTimeField( blank=True)
     url_site = models.URLField(blank=True)
-    mail = models.EmailField(max_length=254)
+    
      
     longitude = models.FloatField(null=True, blank=True)
     latitude = models.FloatField(null=True, blank=True)
@@ -206,7 +206,7 @@ class event(models.Model):
      
     url_site = models.URLField(blank=True)
     is_national = models.BooleanField(default=True, blank=True)
-    mail = models.EmailField(max_length=254)
+    
     longitude = models.FloatField(null=True, blank=True)
     latitude = models.FloatField(null=True, blank=True)  
 
@@ -226,7 +226,7 @@ class lieux_de_loisirs(models.Model):
     open_time = models.DateTimeField( blank=True)
     close_time = models.DateTimeField( blank=True)     
     url_site = models.URLField(blank=True)
-    mail = models.EmailField(max_length=254)
+    
     longitude = models.FloatField(null=True, blank=True)
     latitude = models.FloatField(null=True, blank=True)  
 
