@@ -342,7 +342,8 @@ class Tendance(models.Model):
 class Information(models.Model):
     nom = models.CharField(max_length=100, blank=True)  
     description = models.TextField(blank=True)  
-    contact = models.CharField(max_length=100, blank=True)  
+    contact = models.CharField(max_length=100, blank=True)
+    image = models.ImageField(upload_to='Information', blank=True)  
 
     def __str__(self):
         return self.nom  
