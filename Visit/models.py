@@ -208,7 +208,7 @@ class event(models.Model):
     latitude = models.FloatField(null=True, blank=True)  
 
     def __str__(self):
-        return self.name  
+        return self.name    
 ############################################################
 class Photo_lieux_de_loisirs(models.Model):
     image = models.ImageField(upload_to='photos_lieux_de_loisirs')
